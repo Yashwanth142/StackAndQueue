@@ -1,4 +1,6 @@
-﻿namespace StackandQueue
+﻿using System.Threading.Tasks;
+
+namespace StackandQueue
 { 
 public class QNode
 {
@@ -83,14 +85,16 @@ public class QNode
             queue.enqueue(30);
             queue.enqueue(70);
 
-
-            Console.WriteLine();
-            Console.WriteLine("size is : " + queue.size());
-            Console.WriteLine("peek is : " + queue.peek());
-            Console.WriteLine("dequeue : " + queue.dequeue());
-            Console.WriteLine("size is : " + queue.size());
-            Console.WriteLine("peek is : " + queue.peek());
-            Console.WriteLine("IsEmpty : " + queue.isEmpty());
+            while (queue.size() > 0)
+            {
+                Console.WriteLine();
+                Console.WriteLine("size is : " + queue.size());
+                Console.WriteLine("peek is : " + queue.peek());
+                Console.WriteLine("dequeue : " + queue.dequeue());
+                Console.WriteLine("size is : " + queue.size());
+                Console.WriteLine("peek is : " + queue.peek());
+                Console.WriteLine("IsEmpty : " + queue.isEmpty());
+            }
 
         }
     }
