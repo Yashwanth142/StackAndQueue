@@ -1,76 +1,97 @@
 ﻿namespace StackandQueue
+{ 
+public class QNode
 {
-    class Program
+    public int data;
+    public QNode next;
+    public QNode(int value)
     {
-        public class StackNode
+        this.data = value;
+        this.next = null;
+    }
+}
+    public class MyQueue
+    {
+        public QNode head;
+        public QNode tail;
+        public int count;
+        public MyQueue()
         {
-            public int data;
-            public StackNode next;
-            public StackNode(int data)
-            {
-                this.data = data;
-            }
+            this.head = null;
+            this.tail = null;
+            this.count = 0;
         }
-
-        StackNode root;
-
-        public void push(int data)
+        public int size()
         {
-            StackNode newNode = new StackNode(data);
-            if (root == null)
-            {
-                root = newNode;
+            return this.count;
+        }
+        public bool isEmpty()
+        {
+            return this.count == 0;
+        }
+        
+        public void enqueue(int value)
+        {
+            
+            var node = new QNode(value);
+            if (this.head == null)
+            { 
+                this.head = node;
             }
             else
             {
-                StackNode temp = root;
-                root = newNode;
-                newNode.next = temp;
+                this.tail.next = node;
             }
-            Console.WriteLine("Item pushed into stack : " + data);
+            Console.WriteLine("The data is: " + node.data);
+            this.count++;
+            this.tail = node;
         }
-
-        public int pop()
+        
+        public int dequeue()
         {
-            int popped;
-            if (root == null)
+            if (this.head == null)
             {
-                Console.WriteLine("Stack is Empty");
-                return 0;
+                Console.WriteLine("Empty Queue");
+                return -1;
             }
-            else
+            
+            var temp = this.head;
+            
+            this.head = this.head.next;
+            this.count--;
+            if (this.head == null)
             {
-                popped = root.data;
-                root = root.next;
-                return popped;
+                this.tail = null;
             }
+            return temp.data;
         }
-
+        
         public int peek()
         {
-            if (root == null)
+            if (this.head == null)
             {
-                Console.WriteLine("Stack is empty");
-                return 0;
+                Console.WriteLine("Empty Queue");
+                return -1;
             }
-            else
-            {
-                return root.data;
-            }
+            return this.head.data;
         }
-
         public static void Main(String[] args)
         {
-            Program m = new Program();
-            m.push(56);
-            m.push(30);
-            m.push(70);
-            while (m.root != null)
-            {
-                Console.WriteLine("Item popped from stack : " + m.pop());
-                Console.WriteLine(m.peek() + " Returned by Peek operation");
-            }
+            var queue = new MyQueue();
+            
+            queue.enqueue(56);
+            queue.enqueue(30);
+            queue.enqueue(70);
+
+
+            Console.WriteLine();
+            Console.WriteLine("size is : " + queue.size());
+            Console.WriteLine("peek is : " + queue.peek());
+            Console.WriteLine("dequeue : " + queue.dequeue());
+            Console.WriteLine("size is : " + queue.size());
+            Console.WriteLine("peek is : " + queue.peek());
+            Console.WriteLine("IsEmpty : " + queue.isEmpty());
+
         }
     }
-
 }
