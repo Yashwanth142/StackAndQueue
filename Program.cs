@@ -61,12 +61,16 @@
 
         public static void Main(String[] args)
         {
-            Program p = new Program();
-            p.push(56);
-            p.push(30);
-            p.push(70);
-            Console.WriteLine("Item popped from stack : " + p.pop());
-            Console.WriteLine(p.peek() + " Returned by Peek operation");
+            Program m = new Program();
+            m.push(56);
+            m.push(30);
+            m.push(70);
+            while (m.root != null)
+            {
+                Console.WriteLine("Item popped from stack : " + m.pop());
+                Console.WriteLine(m.peek() + " Returned by Peek operation");
+            }
         }
     }
+
 }
